@@ -7,20 +7,26 @@ import 'package:simple_gallery/data/models.dart';
 abstract class Api {
 
   static Future<Iterable<Album>> getAlbums() async {
-    final url = Const.apiUrl + "/albums";
+    const url = Const.apiUrl + "/albums";
     final response = await http.get(url);
     return (jsonDecode(response.body) as List).map((e) => Album.fromJson(e));
   }
 
   static Future<Iterable<Post>> getPosts() async {
-    final url = Const.apiUrl + "/posts";
+    const url = Const.apiUrl + "/posts";
     final response = await http.get(url);
     return (jsonDecode(response.body) as List).map((e) => Post.fromJson(e));
   }
 
   static Future<Iterable<User>> getUsers() async {
-    final url = Const.apiUrl + "/users";
+    const url = Const.apiUrl + "/users";
     final response = await http.get(url);
     return (jsonDecode(response.body) as List).map((e) => User.fromJson(e));
+  }
+
+  static Future<User> getUser(num userId) async {
+    final url = Const.apiUrl + "/users/" + userId.toString();
+    final response = await http.get(url);
+    return User.fromJson(jsonDecode(response.body));
   }
 }

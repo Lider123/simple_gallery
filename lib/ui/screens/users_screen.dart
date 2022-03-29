@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_gallery/const.dart';
 import 'package:simple_gallery/data/api.dart';
 import 'package:simple_gallery/data/models.dart';
+import 'package:simple_gallery/ui/screens/user_screen.dart';
 import 'package:simple_gallery/ui/widgets/loading_container.dart';
 import 'package:simple_gallery/ui/widgets/user_card.dart';
 
@@ -67,10 +68,9 @@ class UsersScreenState extends State<UsersScreen> {
   }
 
   void _onUserTap(User user) {
-    // TODO
-    var message = SnackBar(
-      content: Text("User ${user.username} tapped"),
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => UserScreen(userId: user.id))
     );
-    ScaffoldMessenger.of(context).showSnackBar(message);
   }
 }
